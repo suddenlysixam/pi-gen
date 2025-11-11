@@ -1,0 +1,16 @@
+[Unit]
+Description=Load all Docker image tars from /opt/images on first boot (one time per tar)
+Wants=docker.service
+After=docker.service
+# Only run when there are tars present
+ConditionDirectoryNotEmpty=/opt/images
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/sbin/docker-load-images.sh
+TimeoutSec=120
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target
+
