@@ -1,0 +1,20 @@
+<doctype! html>
+<html>
+  <head>
+    <title>Grocery List</title>
+  </head>
+  <body>
+    <h1>Grocery List</h1>
+    <p>This is a list containing all of your grocery items</p>
+    {% if item_list %}
+      {% for item in item_list %}
+      <li>
+        <a href="{% url 'groceries:grocery_detail' pk=item.pk %}">{{item.name}}</a>
+      </li>
+      {% endfor %}
+    {% else %}
+    <p>Oops! Looks like you don't have any items yet!</p>
+    {% endif %}
+    <a href="{% url 'groceries:grocery_create'%}">Add a grocery item</a>
+  </body>
+</html>
